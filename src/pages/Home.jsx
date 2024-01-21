@@ -8,16 +8,20 @@ import Failed from "../components/Failed";
 const Home = () => {
   const [data, setData] = useState([]);
   const [failed, setFailed] = useState(false);
+  const [loading, setLoading] = useState(true);
   const fetchData = async () => {
+    setLoading(true);
     setFailed(false);
     try {
       await axios
         .get("https://wizard-world-api.herokuapp.com/houses", { timeout: 5000 })
         .then((response) => {
           setData(response.data);
+          setLoading(false);
         });
     } catch (error) {
       console.error(error);
+      setLoading(true);
       setFailed(true);
     }
   };
@@ -28,7 +32,7 @@ const Home = () => {
   }, [data, failed]);
   return (
     <>
-      {data.length == 0 && !failed ? (
+      {data.length == 0 && !failed && loading ? (
         <Loading />
       ) : (
         <div className="bg-slate-50 w-full min-h-screen px-4 py-8">
