@@ -21,8 +21,8 @@ const Home = () => {
         });
     } catch (error) {
       console.error(error);
-      setLoading(true);
       setFailed(true);
+      setLoading(false);
     }
   };
   useEffect(() => {
