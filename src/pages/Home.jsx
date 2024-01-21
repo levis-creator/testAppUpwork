@@ -10,7 +10,7 @@ const Home = () => {
     setFailed(false);
     try {
       await axios
-        .get("https://wizard-world-api.herokuapp.com/houses", { timeout: 3000 })
+        .get("https://wizard-world-api.herokuapp.com/houses", { timeout: 5000 })
         .then((response) => {
           setData(response.data);
         });
